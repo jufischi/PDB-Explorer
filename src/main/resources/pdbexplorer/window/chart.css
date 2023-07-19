@@ -1,0 +1,9 @@
+/**
+ * Adjusts the dots in the scatter chart. Adapted from ChatGPT.
+ */
+.small-chart-symbols .chart-symbol {
+    -fx-background-color: #000000, #ffffff;
+    -fx-background-insets: 0, 2px;
+    -fx-background-radius: 3px;
+    -fx-padding: 2px;
+}

@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.chart.ScatterChart?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.CheckMenuItem?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.RadioMenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.input.KeyCodeCombination?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.TextFlow?>
+<?import javafx.scene.web.WebView?>
+
+<AnchorPane prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pdbexplorer.window.WindowController">
+   <children>
+      <BorderPane layoutX="112.0" layoutY="77.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <top>
+            <VBox BorderPane.alignment="CENTER">
+               <children>
+                  <MenuBar>
+                    <menus>
+                      <Menu mnemonicParsing="false" text="File">
+                        <items>
+                              <MenuItem fx:id="menuOpen" mnemonicParsing="false" text="Open...">
+                                 <accelerator>
+                                    <KeyCodeCombination alt="UP" code="O" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                                 </accelerator>
+                              </MenuItem>
+                              <MenuItem fx:id="menuSave" mnemonicParsing="false" text="Save...">
+                                 <accelerator>
+                                    <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                                 </accelerator>
+                              </MenuItem>
+                              <SeparatorMenuItem mnemonicParsing="false" />
+                          <MenuItem fx:id="menuClose" mnemonicParsing="false" text="Close">
+                                 <accelerator>
+                                    <KeyCodeCombination alt="UP" code="W" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                                 </accelerator>
+                              </MenuItem>
+                        </items>
+                      </Menu>
+                      <Menu mnemonicParsing="false" text="Edit">
+                        <items>
+                          <MenuItem fx:id="menuUndo" mnemonicParsing="false" text="Undo">
+                                 <accelerator>
+                                    <KeyCodeCombination alt="UP" code="Z" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                                 </accelerator>
+                              </MenuItem>
+                              <MenuItem fx:id="menuRedo" mnemonicParsing="false" text="Redo">
+                                 <accelerator>
+                                    <KeyCodeCombination alt="UP" code="Y" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                                 </accelerator>
+                              </MenuItem>
+                              <SeparatorMenuItem mnemonicParsing="false" />
+                              <MenuItem fx:id="menuCopy" mnemonicParsing="false" text="Copy">
+                                 <accelerator>
+                                    <KeyCodeCombination alt="UP" code="C" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                                 </accelerator>
+                              </MenuItem>
+                        </items>
+                      </Menu>
+                        <Menu mnemonicParsing="false" text="View">
+                          <items>
+                              <CheckMenuItem fx:id="menuShowBalls" mnemonicParsing="false" text="Show Balls" />
+                              <CheckMenuItem fx:id="menuShowSticks" mnemonicParsing="false" text="Show Sticks" />
+                              <CheckMenuItem fx:id="menuShowRibbons" mnemonicParsing="false" text="Show Ribbons" />
+                              <SeparatorMenuItem mnemonicParsing="false" />
+                              <Menu fx:id="colorByMenu" mnemonicParsing="false" text="Color by:">
+                                <items>
+                                    <RadioMenuItem fx:id="menuColAtom" mnemonicParsing="false" text="atom" />
+                                    <RadioMenuItem fx:id="menuColResidue" mnemonicParsing="false" text="residue" />
+                                    <RadioMenuItem fx:id="menuColSecStruc" mnemonicParsing="false" text="sec. structure" />
+                                    <RadioMenuItem fx:id="menuColMolecule" mnemonicParsing="false" text="molecule" />
+                                </items>
+                              </Menu>
+                              <SeparatorMenuItem mnemonicParsing="false" />
+                              <MenuItem fx:id="explodeMenu" mnemonicParsing="false" text="Explode" />
+                              <MenuItem fx:id="jiggleMenu" mnemonicParsing="false" text="Jiggle" />
+                              <SeparatorMenuItem mnemonicParsing="false" />
+                              <MenuItem fx:id="menuFullScreen" mnemonicParsing="false" text="Full Screen">
+                                 <accelerator>
+                                    <KeyCodeCombination alt="UP" code="F" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
+                                 </accelerator></MenuItem>
+                              <CheckMenuItem fx:id="menuDarkMode" mnemonicParsing="false" text="Dark Mode">
+                                 <accelerator>
+                                    <KeyCodeCombination alt="UP" code="D" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                                 </accelerator></CheckMenuItem>
+                          </items>
+                        </Menu>
+                      <Menu mnemonicParsing="false" text="Help">
+                        <items>
+                              <MenuItem fx:id="menuHelp" mnemonicParsing="false" text="Help">
+                                 <accelerator>
+                                    <KeyCodeCombination alt="UP" code="H" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                                 </accelerator>
+                              </MenuItem>
+                          <MenuItem fx:id="menuAbout" mnemonicParsing="false" text="About" />
+                        </items>
+                      </Menu>
+                    </menus>
+                  </MenuBar>
+                  <ToolBar>
+                    <items>
+                        <Button fx:id="loadButton" mnemonicParsing="false" text="Open..." />
+                      <Button fx:id="saveButton" mnemonicParsing="false" text="Save..." />
+                        <Separator orientation="VERTICAL" />
+                        <Button fx:id="undoButton" mnemonicParsing="false" text="Undo" />
+                        <Button fx:id="redoButton" mnemonicParsing="false" text="Redo" />
+                        <Separator orientation="VERTICAL" />
+                        <Button fx:id="copyButton" mnemonicParsing="false" text="Copy" />
+                    </items>
+                  </ToolBar>
+               </children>
+            </VBox>
+         </top>
+         <center>
+            <AnchorPane BorderPane.alignment="CENTER">
+               <children>
+                  <BorderPane layoutX="248.0" layoutY="65.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <center>
+                        <AnchorPane BorderPane.alignment="CENTER">
+                           <children>
+                              <TabPane tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <tabs>
+                                  <Tab closable="false" text="Protein View">
+                                       <content>
+                                          <AnchorPane>
+                                             <children>
+                                                <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                   <center>
+                                                      <Pane fx:id="mainPane" BorderPane.alignment="CENTER" />
+                                                   </center>
+                                                   <top>
+                                                      <ToolBar nodeOrientation="RIGHT_TO_LEFT" BorderPane.alignment="CENTER">
+                                                        <items>
+                                                            <ChoiceBox fx:id="colorSchemeChoiceBox" />
+                                                            <Label text="Color by:" />
+                                                            <Separator orientation="VERTICAL" />
+                                                            <Slider fx:id="bondsSlider" blockIncrement="0.05" max="1.75" min="0.25" nodeOrientation="LEFT_TO_RIGHT" prefWidth="100.0" value="1.0" />
+                                                            <CheckBox fx:id="bondsCB" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" text="Bonds" />
+                                                            <Separator orientation="VERTICAL" />
+                                                            <Slider fx:id="atomsSlider" blockIncrement="0.05" max="1.75" min="0.25" nodeOrientation="LEFT_TO_RIGHT" prefWidth="100.0" value="1.0" />
+                                                            <CheckBox fx:id="atomsCB" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" text="Atoms" />
+                                                            <Separator orientation="VERTICAL" />
+                                                            <CheckBox fx:id="ribbonsCB" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" text="Ribbons" />
+                                                        </items>
+                                                      </ToolBar>
+                                                   </top>
+                                                   <bottom>
+                                                      <VBox BorderPane.alignment="CENTER">
+                                                         <children>
+                                                            <ScrollPane fx:id="sequenceScrollBar" maxHeight="48.0" prefHeight="48.0" vbarPolicy="NEVER">
+                                                               <content>
+                                                                  <TextFlow fx:id="sequenceTextFlow" maxHeight="50.0" />
+                                                               </content>
+                                                            </ScrollPane>
+                                                            <ToolBar styleClass="button-bar">
+                                                               <items>
+                                                                  <Label text="Zoom" />
+                                                                  <Button fx:id="zoomInButton" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefWidth="25.6" text="+" />
+                                                                <Button fx:id="zoomOutButton" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefWidth="25.6" text="-" />
+                                                                  <Separator orientation="VERTICAL" />
+                                                                  <Button fx:id="deselectButton" disable="true" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" text="Deselect All" />
+                                                                  <Pane HBox.hgrow="ALWAYS" />
+                                                                  <Button fx:id="jiggleButton" mnemonicParsing="false" text="Jiggle" />
+                                                                  <Button fx:id="explodeButton" mnemonicParsing="false" text="Explode" />
+                                                               </items>
+                                                            </ToolBar>
+                                                         </children>
+                                                      </VBox>
+                                                   </bottom>
+                                                </BorderPane>
+                                                <TitledPane fx:id="legendTP" text="Legend" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="45.0">
+                                                   <content>
+                                                      <WebView fx:id="legendWV" maxHeight="200.0" maxWidth="120.0" minWidth="120.0" prefHeight="100.0" prefWidth="120.0" />
+                                                   </content>
+                                                </TitledPane>
+                                             </children>
+                                          </AnchorPane>
+                                       </content>
+                                    </Tab>
+                                  <Tab closable="false" text="PDB File">
+                                       <content>
+                                          <AnchorPane>
+                                             <children>
+                                                <TextArea fx:id="pdbFileTA" editable="false" promptText="Selected PDB files will be displayed here." AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                   <font>
+                                                      <Font name="Monospaced Regular" size="12.0" />
+                                                   </font>
+                                                </TextArea>
+                                             </children>
+                                          </AnchorPane>
+                                       </content>
+                                    </Tab>
+                                    <Tab fx:id="statsTab" closable="false" text="Stats">
+                                      <content>
+                                        <AnchorPane>
+                                             <children>
+                                                <ScrollPane fx:id="chartsScrollPane" hbarPolicy="NEVER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                   <content>
+                                                      <VBox alignment="CENTER" HBox.hgrow="ALWAYS">
+                                                         <children>
+                                                            <PieChart fx:id="residuePieChart" maxWidth="680.0" />
+                                                            <Separator />
+                                                            <PieChart fx:id="secStrucPieChart" />
+                                                            <Separator />
+                                                            <PieChart fx:id="propertiesPC" maxWidth="680.0" />
+                                                            <Separator />
+                                                            <ScatterChart fx:id="ramachandranPlot" maxWidth="400.0" prefWidth="400.0">
+                                                              <xAxis>
+                                                                <NumberAxis side="BOTTOM" />
+                                                              </xAxis>
+                                                              <yAxis>
+                                                                <NumberAxis side="LEFT" />
+                                                              </yAxis>
+                                                            </ScatterChart>
+                                                         </children>
+                                                      </VBox>
+                                                   </content>
+                                                </ScrollPane>
+                                             </children></AnchorPane>
+                                      </content>
+                                    </Tab>
+                                </tabs>
+                              </TabPane>
+                           </children>
+                        </AnchorPane>
+                     </center>
+                     <left>
+                        <AnchorPane maxWidth="120.0" minWidth="120.0" prefWidth="120.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <center>
+                                    <TabPane side="LEFT" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+                                      <tabs>
+                                        <Tab text="PDB Entries">
+                                          <content>
+                                            <AnchorPane>
+                                                   <children>
+                                                      <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                         <center>
+                                                            <AnchorPane BorderPane.alignment="TOP_LEFT">
+                                                               <children>
+                                                                  <ListView fx:id="pdbEntryListView" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                                  <ProgressBar fx:id="pdbEntriesProgress" layoutX="-57.0" layoutY="14.0" progress="0.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="10.0" />
+                                                               </children>
+                                                            </AnchorPane>
+                                                         </center>
+                                                         <top>
+                                                            <TextField fx:id="pdbSearchTF" promptText="Enter PDB ID" BorderPane.alignment="CENTER" />
+                                                         </top>
+                                                      </BorderPane>
+                                                   </children>
+                                                </AnchorPane>
+                                          </content>
+                                        </Tab>
+                                        <Tab fx:id="modelsTab" disable="true" text="Models">
+                                          <content>
+                                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                   <children>
+                                                      <ListView fx:id="modelListView" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                   </children>
+                                                </AnchorPane>
+                                          </content>
+                                        </Tab>
+                                          <Tab fx:id="chainsTab" disable="true" text="Chains">
+                                            <content>
+                                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                   <children>
+                                                      <ListView fx:id="chainListView" layoutX="-48.0" layoutY="-43.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                   </children>
+                                                </AnchorPane>
+                                            </content>
+                                          </Tab>
+                                      </tabs>
+                                    </TabPane>
+                                 </center>
+                              </BorderPane>
+                           </children>
+                        </AnchorPane>
+                     </left>
+                     <bottom>
+                        <ToolBar BorderPane.alignment="CENTER">
+                          <items>
+                              <Label fx:id="infoLabel" />
+                              <ProgressBar fx:id="generalProgress" progress="0.0" visible="false" />
+                              <Region prefHeight="18.0" prefWidth="379.0" />
+                          </items>
+                        </ToolBar>
+                     </bottom>
+                  </BorderPane>
+               </children>
+            </AnchorPane>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>
